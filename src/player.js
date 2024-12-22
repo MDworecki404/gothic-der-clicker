@@ -16,7 +16,7 @@ const playerStats = {
         ShitOfOreAmount: 0,
     },
     zloto: {
-        zloto: 9999999, //Poźniej trzeba zmienić na 0
+        zloto: 0, //Poźniej trzeba zmienić na 0
         zlotoAchiever: 1,
         zlotoPassive: 0,
     },
