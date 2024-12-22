@@ -108,6 +108,8 @@ function create ()
           RyzCollectorText.setText(`Ilość: ${playerStats.upgrades.ryzCollectorAmount}`)
           SlaveryText.setText(`Ilość: ${playerStats.upgrades.slaversAmount}`)
           MeltingGoldText.setText(`Ilośc: ${playerStats.upgrades.meltingGoldAmount}`)
+          BeliarBlessingText.setText(`Ilośc: ${playerStats.upgrades.BeliarBlessingAmount}`)
+          ShitOfOreText.setText(`Ilośc: ${playerStats.upgrades.ShitOfOreAmount}`)
           
         } catch (err) {
           console.error("Błąd podczas wczytywania pliku:", err)
