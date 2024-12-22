@@ -322,7 +322,7 @@ function create ()
   //Niech Beliar będzie z tobą//
   const ShitOfOrePanel  = this.add.image(720, 654, 'ShitOfOrePanel').setOrigin(0,0)
   let ShitOfOreText = this.add.text(728, 720, `Ilość: ${playerStats.upgrades.ShitOfOreAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'})
-  let ShitOfOreCost = 12500
+  let ShitOfOreCost = 75000
   ShitOfOrePanel.setInteractive({cursor: 'pointer'})
 
   ShitOfOrePanel.on('pointerdown', ()=>{
