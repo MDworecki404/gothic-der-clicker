@@ -3,7 +3,7 @@ const playerStats = {
         level: 0,
         expAct: 0,
         expNeed: 500,
-        PN: 0,
+        PN: 100,
         str: 0,
         dex: 0
     },
@@ -16,7 +16,7 @@ const playerStats = {
         ShitOfOreAmount: 0,
     },
     zloto: {
-        zloto: 0, //Poźniej trzeba zmienić na 0
+        zloto:100, //Poźniej trzeba zmienić na 0
         zlotoAchiever: 1,
         zlotoPassive: 0,
     },

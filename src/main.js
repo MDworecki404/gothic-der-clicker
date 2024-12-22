@@ -8,7 +8,7 @@ import oldcampmusic from './assets/GothicOldCamp.mp3'
 import SaveGame from './assets/SaveGame.png'
 import LoadGame from './assets/LoadGame.png'
 import strengthPanel from './assets/Strength.png'
-import dexterityPanel from './assets/Dexterity.png'
+import dexterityPanel from './assets/DexPanel.png'
 import RyzCollector from './assets/RyzCollectorPanel.png'
 import Slavery from './assets/SubjectSlavery.png'
 import NoMoney from './assets/brakZlota.mp3'
@@ -101,7 +101,7 @@ function create ()
           Object.assign(playerStats, loadedData)
 
           // Zaktualizuj wyświetlane wartości
-          zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+          zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
           sheepText.setText(`Ilość: ${playerStats.upgrades.sheepAmount}`)
           STRText.setText(`Siła: ${playerStats.stats.str}`)
           DEXText.setText(`Zręczność: ${playerStats.stats.dex}`)
@@ -127,11 +127,11 @@ function create ()
 
   //Głowa do klikania//
   const head = this.add.image(1024/2,768/2, 'head1').setScale(0.5)
-  zlotoText = this.add.text(16, 16, `Złoto: ${playerStats.zloto.zloto}`, {fontSize: '32px',fontFamily: 'Times New Roman', fill: '#000'})
+  zlotoText = this.add.text(16, 16, `Złoto: ${Math.round(playerStats.zloto.zloto)}`, {fontSize: '32px',fontFamily: 'Times New Roman', fill: '#000'})
   head.setInteractive({cursor: 'pointer'})
   head.on('pointerdown', () => {
     playerStats.zloto.zloto+=playerStats.zloto.zlotoAchiever
-    zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+    zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
     playerStats.stats.expAct+=1
     expText.setText(`Exp: ${playerStats.stats.expAct}/${playerStats.stats.expNeed}`)
     
@@ -140,7 +140,7 @@ function create ()
   //Odświeżanie przychodu i expa//
   setInterval(()=>{
     playerStats.zloto.zloto+=playerStats.zloto.zlotoPassive
-    zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+    zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
     playerStats.stats.expAct+=playerStats.expPassive
     expText.setText(`Exp: ${playerStats.stats.expAct}/${playerStats.stats.expNeed}`)
 
@@ -160,7 +160,7 @@ function create ()
     }
 
     //Console.log'i//
-      //console.log(playerStats.incomeTime)
+      console.log(playerStats.incomeTime)
     //Console.log'i//
   },playerStats.incomeTime)
   //Odświeżanie przychodu i expa//
@@ -188,8 +188,9 @@ function create ()
   Dexterity.on('pointerdown', () => {
     if(playerStats.stats.PN>=1){
       playerStats.stats.dex+=1
-      playerStats.incomeTime=playerStats.incomeTime*0.95
+      playerStats.incomeTime*=0.95
       playerStats.stats.PN-=1
+      playerStats.zloto.zlotoPassive*=1.05
       PNText.setText(`PN: ${playerStats.stats.PN}`)
       DEXText.setText(`Zręczność: ${playerStats.stats.dex}`)
     } else if (playerStats.stats.PN<1) {
@@ -206,7 +207,7 @@ function create ()
     if(playerStats.zloto.zloto>=sheepCost){
       playerStats.upgrades.sheepAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-sheepCost
-      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
       sheepText.setText(`Ilość: ${playerStats.upgrades.sheepAmount}`)
       playerStats.zloto.zlotoPassive+=1
       playerStats.expPassive+=1
@@ -231,7 +232,7 @@ function create ()
     if(playerStats.zloto.zloto>=RyzCost){
         playerStats.upgrades.ryzCollectorAmount+=1
         playerStats.zloto.zloto = playerStats.zloto.zloto-RyzCost
-        zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+        zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
         RyzCollectorText.setText(`Ilość: ${playerStats.upgrades.ryzCollectorAmount}`)
         playerStats.zloto.zlotoPassive+=5
         playerStats.expPassive+=5
@@ -256,7 +257,7 @@ function create ()
     if(playerStats.zloto.zloto>=slaverCost){
       playerStats.upgrades.slaversAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-slaverCost
-      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
       SlaveryText.setText(`Ilość: ${playerStats.upgrades.slaversAmount}`)
       playerStats.zloto.zlotoPassive+=7.5
       playerStats.expPassive+=7.5
@@ -281,7 +282,7 @@ function create ()
     if(playerStats.zloto.zloto>=MeltingGoldCost){
       playerStats.upgrades.meltingGoldAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-MeltingGoldCost
-      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
       MeltingGoldText.setText(`Ilość: ${playerStats.upgrades.meltingGoldAmount}`)
       playerStats.zloto.zlotoPassive+=20
       playerStats.expPassive+=20
@@ -306,7 +307,7 @@ function create ()
     if(playerStats.zloto.zloto>=BeliarBlessingCost){
       playerStats.upgrades.BeliarBlessingAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-BeliarBlessingCost
-      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
       BeliarBlessingText.setText(`Ilość: ${playerStats.upgrades.BeliarBlessingAmount}`)
       playerStats.zloto.zlotoPassive+=100
       playerStats.expPassive+=100
@@ -331,7 +332,7 @@ function create ()
     if(playerStats.zloto.zloto>=ShitOfOreCost){
       playerStats.upgrades.ShitOfOreAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-ShitOfOreCost
-      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      zlotoText.setText(`Złoto: ${Math.round(playerStats.zloto.zloto)}`)
       ShitOfOreText.setText(`Ilość: ${playerStats.upgrades.ShitOfOreAmount}`)
       playerStats.zloto.zlotoPassive+=500
       playerStats.expPassive+=500
