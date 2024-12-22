@@ -203,7 +203,7 @@ function create ()
   SheepUpgradePanel.setInteractive({cursor: 'pointer'})
   sheepText = this.add.text(728, 141, `Ilość: ${playerStats.upgrades.sheepAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
   SheepUpgradePanel.on('pointerdown', () => {
-    if(playerStats.zloto.zloto>=100){
+    if(playerStats.zloto.zloto>=sheepCost){
       playerStats.upgrades.sheepAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-sheepCost
       zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
@@ -211,7 +211,7 @@ function create ()
       playerStats.zloto.zlotoPassive+=1
       playerStats.expPassive+=1
 
-    } else if (playerStats.zloto.zloto < 100) {
+    } else if (playerStats.zloto.zloto < sheepCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
            loop: false, // Muzyka będzie odtwarzana w pętli
@@ -228,7 +228,7 @@ function create ()
   RyzCollectorPanel.setInteractive({cursor: 'pointer'})
 
   RyzCollectorPanel.on('pointerdown', () => {
-    if(playerStats.zloto.zloto>=1000){
+    if(playerStats.zloto.zloto>=RyzCost){
         playerStats.upgrades.ryzCollectorAmount+=1
         playerStats.zloto.zloto = playerStats.zloto.zloto-RyzCost
         zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
@@ -236,7 +236,7 @@ function create ()
         playerStats.zloto.zlotoPassive+=5
         playerStats.expPassive+=5
 
-    } else if (playerStats.zloto.zloto < 1000) {
+    } else if (playerStats.zloto.zloto < RyzCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
             loop: false, // Muzyka będzie odtwarzana w pętli
@@ -253,7 +253,7 @@ function create ()
   SlaveryPanel.setInteractive({cursor: 'pointer'})
 
   SlaveryPanel.on('pointerdown', ()=>{
-    if(playerStats.zloto.zloto>=1500){
+    if(playerStats.zloto.zloto>=slaverCost){
       playerStats.upgrades.slaversAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-slaverCost
       zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
@@ -261,7 +261,7 @@ function create ()
       playerStats.zloto.zlotoPassive+=7.5
       playerStats.expPassive+=7.5
 
-    } else if (playerStats.zloto.zloto < 1500) {
+    } else if (playerStats.zloto.zloto < slaverCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
            loop: false, // Muzyka będzie odtwarzana w pętli
@@ -274,19 +274,19 @@ function create ()
   //Co robisz, topisz złoto??//
   const MeltingGoldPanel  = this.add.image(720, 422, 'MeltingGoldPanel').setOrigin(0,0)
   let MeltingGoldText = this.add.text(728, 488, `Ilość: ${playerStats.upgrades.meltingGoldAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'})
-  let MetlingGoldCost = 3000
+  let MeltingGoldCost = 3000
   MeltingGoldPanel.setInteractive({cursor: 'pointer'})
 
   MeltingGoldPanel.on('pointerdown', ()=>{
-    if(playerStats.zloto.zloto>=1500){
+    if(playerStats.zloto.zloto>=MeltingGoldCost){
       playerStats.upgrades.meltingGoldAmount+=1
-      playerStats.zloto.zloto = playerStats.zloto.zloto-MetlingGoldCost
+      playerStats.zloto.zloto = playerStats.zloto.zloto-MeltingGoldCost
       zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
       MeltingGoldText.setText(`Ilość: ${playerStats.upgrades.meltingGoldAmount}`)
       playerStats.zloto.zlotoPassive+=20
       playerStats.expPassive+=20
 
-    } else if (playerStats.zloto.zloto < 1500) {
+    } else if (playerStats.zloto.zloto < MeltingGoldCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
            loop: false, // Muzyka będzie odtwarzana w pętli
@@ -303,7 +303,7 @@ function create ()
   BeliarBlessingPanel.setInteractive({cursor: 'pointer'})
 
   BeliarBlessingPanel.on('pointerdown', ()=>{
-    if(playerStats.zloto.zloto>=1500){
+    if(playerStats.zloto.zloto>=BeliarBlessingCost){
       playerStats.upgrades.BeliarBlessingAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-BeliarBlessingCost
       zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
@@ -311,7 +311,7 @@ function create ()
       playerStats.zloto.zlotoPassive+=100
       playerStats.expPassive+=100
 
-    } else if (playerStats.zloto.zloto < 1500) {
+    } else if (playerStats.zloto.zloto < BeliarBlessingCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
            loop: false, // Muzyka będzie odtwarzana w pętli
@@ -328,7 +328,7 @@ function create ()
   ShitOfOrePanel.setInteractive({cursor: 'pointer'})
 
   ShitOfOrePanel.on('pointerdown', ()=>{
-    if(playerStats.zloto.zloto>=1500){
+    if(playerStats.zloto.zloto>=ShitOfOreCost){
       playerStats.upgrades.ShitOfOreAmount+=1
       playerStats.zloto.zloto = playerStats.zloto.zloto-ShitOfOreCost
       zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
@@ -336,7 +336,7 @@ function create ()
       playerStats.zloto.zlotoPassive+=500
       playerStats.expPassive+=500
 
-    } else if (playerStats.zloto.zloto < 1500) {
+    } else if (playerStats.zloto.zloto < ShitOfOreCost) {
         const NoMoneySound = this.sound.add('NoMoney');
         NoMoneySound.play({
            loop: false, // Muzyka będzie odtwarzana w pętli
