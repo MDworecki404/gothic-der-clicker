@@ -13,6 +13,9 @@ import RyzCollector from './assets/RyzCollectorPanel.png'
 import Slavery from './assets/SubjectSlavery.png'
 import NoMoney from './assets/brakZlota.mp3'
 import levelUp from './assets/levelUp.mp3'
+import MeltingGold from './assets/MeltingGold.png'
+import BeliarBlessing from './assets/BeliarBlessing.png'
+import ShitOfOre from './assets/shitofore.png'
 
 const config = {
   type: Phaser.AUTO,
@@ -38,6 +41,9 @@ function preload ()
   this.load.image('DexterityPanel', dexterityPanel)
   this.load.image('RyzCollectorPanel', RyzCollector)
   this.load.image('SlaveryPanel', Slavery)
+  this.load.image('MeltingGoldPanel', MeltingGold)
+  this.load.image('BeliarBlessingPanel', BeliarBlessing)
+  this.load.image('ShitOfOrePanel', ShitOfOre)
 
   this.load.audio('OldCampMusic', oldcampmusic)
   this.load.audio('NoMoney', NoMoney)
@@ -101,6 +107,7 @@ function create ()
           DEXText.setText(`Zręczność: ${playerStats.stats.dex}`)
           RyzCollectorText.setText(`Ilość: ${playerStats.upgrades.ryzCollectorAmount}`)
           SlaveryText.setText(`Ilość: ${playerStats.upgrades.slaversAmount}`)
+          MeltingGoldText.setText(`Ilośc: ${playerStats.upgrades.meltingGoldAmount}`)
           
         } catch (err) {
           console.error("Błąd podczas wczytywania pliku:", err)
@@ -190,9 +197,9 @@ function create ()
   //Zręczność//
 
   //Panel owcy//
-  const SheepUpgradePanel = this.add.image(720, 44, 'SheepUpgrade').setOrigin(0,0)
+  const SheepUpgradePanel = this.add.image(720, 74, 'SheepUpgrade').setOrigin(0,0)
   SheepUpgradePanel.setInteractive({cursor: 'pointer'})
-  sheepText = this.add.text(728, 111, `Ilość: ${playerStats.upgrades.sheepAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
+  sheepText = this.add.text(728, 141, `Ilość: ${playerStats.upgrades.sheepAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
   SheepUpgradePanel.on('pointerdown', () => {
     if(playerStats.zloto.zloto>=100){
       playerStats.upgrades.sheepAmount+=1
@@ -213,8 +220,8 @@ function create ()
   })
   //Panel owcy//
   //Panel Ryzu//
-  const RyzCollectorPanel = this.add.image(720,160,'RyzCollectorPanel').setOrigin(0,0)
-  let RyzCollectorText = this.add.text(728, 226, `Ilość: ${playerStats.upgrades.ryzCollectorAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
+  const RyzCollectorPanel = this.add.image(720,190,'RyzCollectorPanel').setOrigin(0,0)
+  let RyzCollectorText = this.add.text(728, 256, `Ilość: ${playerStats.upgrades.ryzCollectorAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
   let RyzCost = 1000
   RyzCollectorPanel.setInteractive({cursor: 'pointer'})
 
@@ -238,8 +245,8 @@ function create ()
   })
   //Panel Ryzu//
   //Dzisiejszy temat - niewolnictwo//
-  const SlaveryPanel = this.add.image(720,276, 'SlaveryPanel').setOrigin(0,0)
-  let SlaveryText = this.add.text(728, 342, `Ilość: ${playerStats.upgrades.slaversAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
+  const SlaveryPanel = this.add.image(720,306, 'SlaveryPanel').setOrigin(0,0)
+  let SlaveryText = this.add.text(728, 372, `Ilość: ${playerStats.upgrades.slaversAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'}).setOrigin(0,0)
   let slaverCost = 1500
   SlaveryPanel.setInteractive({cursor: 'pointer'})
 
@@ -262,6 +269,81 @@ function create ()
     }
   })
   //Dzisiejszy temat - niewolnictwo//
+  //Co robisz, topisz złoto??//
+  const MeltingGoldPanel  = this.add.image(720, 422, 'MeltingGoldPanel').setOrigin(0,0)
+  let MeltingGoldText = this.add.text(728, 488, `Ilość: ${playerStats.upgrades.meltingGoldAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'})
+  let MetlingGoldCost = 3000
+  MeltingGoldPanel.setInteractive({cursor: 'pointer'})
+
+  MeltingGoldPanel.on('pointerdown', ()=>{
+    if(playerStats.zloto.zloto>=1500){
+      playerStats.upgrades.meltingGoldAmount+=1
+      playerStats.zloto.zloto = playerStats.zloto.zloto-MetlingGoldCost
+      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      MeltingGoldText.setText(`Ilość: ${playerStats.upgrades.meltingGoldAmount}`)
+      playerStats.zloto.zlotoPassive+=20
+      playerStats.expPassive+=20
+
+    } else if (playerStats.zloto.zloto < 1500) {
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+           loop: false, // Muzyka będzie odtwarzana w pętli
+           volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
+      alert('Biedaku, nawet złota nie masz!')
+    }
+  })
+  //Co robisz, topisz złoto??//
+  //Niech Beliar będzie z tobą//
+  const BeliarBlessingPanel  = this.add.image(720, 538, 'BeliarBlessingPanel').setOrigin(0,0)
+  let BeliarBlessingText = this.add.text(728, 603, `Ilość: ${playerStats.upgrades.BeliarBlessingAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'})
+  let BeliarBlessingCost = 12500
+  BeliarBlessingPanel.setInteractive({cursor: 'pointer'})
+
+  BeliarBlessingPanel.on('pointerdown', ()=>{
+    if(playerStats.zloto.zloto>=1500){
+      playerStats.upgrades.BeliarBlessingAmount+=1
+      playerStats.zloto.zloto = playerStats.zloto.zloto-BeliarBlessingCost
+      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      BeliarBlessingText.setText(`Ilość: ${playerStats.upgrades.BeliarBlessingAmount}`)
+      playerStats.zloto.zlotoPassive+=100
+      playerStats.expPassive+=100
+
+    } else if (playerStats.zloto.zloto < 1500) {
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+           loop: false, // Muzyka będzie odtwarzana w pętli
+           volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
+      alert('Biedaku, nawet złota nie masz!')
+    }
+  })
+  //Niech Beliar będzie z tobą//
+  //Niech Beliar będzie z tobą//
+  const ShitOfOrePanel  = this.add.image(720, 654, 'ShitOfOrePanel').setOrigin(0,0)
+  let ShitOfOreText = this.add.text(728, 720, `Ilość: ${playerStats.upgrades.ShitOfOreAmount}`, {fontSize: '24px', fontFamily: 'Times New Roman', fill: '#fff'})
+  let ShitOfOreCost = 12500
+  ShitOfOrePanel.setInteractive({cursor: 'pointer'})
+
+  ShitOfOrePanel.on('pointerdown', ()=>{
+    if(playerStats.zloto.zloto>=1500){
+      playerStats.upgrades.ShitOfOreAmount+=1
+      playerStats.zloto.zloto = playerStats.zloto.zloto-ShitOfOreCost
+      zlotoText.setText(`Złoto: ${playerStats.zloto.zloto}`)
+      ShitOfOreText.setText(`Ilość: ${playerStats.upgrades.ShitOfOreAmount}`)
+      playerStats.zloto.zlotoPassive+=500
+      playerStats.expPassive+=500
+
+    } else if (playerStats.zloto.zloto < 1500) {
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+           loop: false, // Muzyka będzie odtwarzana w pętli
+           volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
+      alert('Biedaku, nawet złota nie masz!')
+    }
+  })
+  //Niech Beliar będzie z tobą//
   
 }
 

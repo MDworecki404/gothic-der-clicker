@@ -11,6 +11,9 @@ const playerStats = {
         sheepAmount: 0,
         ryzCollectorAmount: 0,
         slaversAmount:0,
+        meltingGoldAmount: 0,
+        BeliarBlessingAmount: 0,
+        ShitOfOreAmount: 0,
     },
     zloto: {
         zloto: 9999999, //Poźniej trzeba zmienić na 0
