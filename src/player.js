@@ -13,7 +13,7 @@ const playerStats = {
         slaversAmount:0,
     },
     zloto: {
-        zloto: 99999, //Poźniej trzeba zmienić na 0
+        zloto: 9999999, //Poźniej trzeba zmienić na 0
         zlotoAchiever: 1,
         zlotoPassive: 0,
     },

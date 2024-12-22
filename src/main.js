@@ -11,6 +11,8 @@ import strengthPanel from './assets/Strength.png'
 import dexterityPanel from './assets/Dexterity.png'
 import RyzCollector from './assets/RyzCollectorPanel.png'
 import Slavery from './assets/SubjectSlavery.png'
+import NoMoney from './assets/brakZlota.mp3'
+import levelUp from './assets/levelUp.mp3'
 
 const config = {
   type: Phaser.AUTO,
@@ -38,6 +40,8 @@ function preload ()
   this.load.image('SlaveryPanel', Slavery)
 
   this.load.audio('OldCampMusic', oldcampmusic)
+  this.load.audio('NoMoney', NoMoney)
+  this.load.audio('levelUp', levelUp)
 }
 
 //Złoto
@@ -139,6 +143,11 @@ function create ()
       levelText.setText(`Poziom: ${playerStats.stats.level}`)
       expText.setText(`Exp: ${playerStats.stats.expAct}/${playerStats.stats.expNeed}`)
       PNText.setText(`PN: ${playerStats.stats.PN}`)
+      const levelUpSound = this.sound.add('levelUp');
+      levelUpSound.play({
+        loop: false, // Muzyka będzie odtwarzana w pętli
+        volume: 0.2 // Poziom głośności (0.0 do 1.0)
+      }); 
     }
 
     //Console.log'i//
@@ -194,7 +203,12 @@ function create ()
       playerStats.expPassive+=1
 
     } else if (playerStats.zloto.zloto < 100) {
-      alert('Biedaku, nawet złota nie masz!')
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+           loop: false, // Muzyka będzie odtwarzana w pętli
+           volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
+        alert('Biedaku, nawet złota nie masz!')
     }
   })
   //Panel owcy//
@@ -213,7 +227,12 @@ function create ()
         playerStats.zloto.zlotoPassive+=5
         playerStats.expPassive+=5
 
-      } else if (playerStats.zloto.zloto < 1000) {
+    } else if (playerStats.zloto.zloto < 1000) {
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+            loop: false, // Muzyka będzie odtwarzana w pętli
+            volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
         alert('Biedaku, nawet złota nie masz!')
       }
   })
@@ -234,6 +253,11 @@ function create ()
       playerStats.expPassive+=7.5
 
     } else if (playerStats.zloto.zloto < 1500) {
+        const NoMoneySound = this.sound.add('NoMoney');
+        NoMoneySound.play({
+           loop: false, // Muzyka będzie odtwarzana w pętli
+           volume: 0.5 // Poziom głośności (0.0 do 1.0)
+        });
       alert('Biedaku, nawet złota nie masz!')
     }
   })
